@@ -1,9 +1,6 @@
 package com.javaex.ex;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -15,9 +12,6 @@ public class MainApp {
 		Person p = new Person();
 		System.out.print(p.toString());
 		
-		Scanner sc = new Scanner(System.in); 
-		sc.nextLine();
-		
 		//리스트 만들기
 		List<Person> pList = new ArrayList<Person>();
 		
@@ -25,26 +19,51 @@ public class MainApp {
 		Reader fr = new FileReader("C:\\JavaStudy\\workspace\\Phonebook\\PhoneDB.txt");
 		BufferedReader br =new BufferedReader(fr);
 		
-		while(true) {
-			String s = br.readLine();
+		//스캐너 생성
+		Scanner sc = new Scanner(System.in); 
+		
+			while(true) {
+				System.out.println(pList.toString());
+				System.out.println();
 			
-			if(s == "1") {
-				System.out.print(p.toString());
+				//메뉴번호 선택
+				String no = sc.nextLine(); 
+				switch(no) {
+					case "1": 
+						System.out.println(p.getName());
+						break;
+					case "2": 
+						System.out.println(p.getHp());
+						break;
+					case "3": 
+						System.out.println(p.getCompany());
+						break;
+					default:
+						System.out.println("파일이 없습니다");
+						break;
+				}
+			}
+		/*
+		//Stream 준비
+		Reader fr = new FileReader("C:\\JavaStudy\\workspace\\Phonebook\\PhoneDB.txt");
+		BufferedReader br =new BufferedReader(fr);
+		
+		while(true) {
+			String i = sc.nextLine();
+			
+			if(i=="1") {
+				System.out.print("파일이 있습니다");
+				System.out.println(fr.read());
 				break;
+			}else {
+				System.out.print("파일 X");
 			}
 		}
-		//출력
-		System.out.println("------출력------------------------");
-		System.out.println(pList.toString());
-		
-		System.out.println("------첫번째 사람의 이름,hp,company--------------");
-		System.out.println(pList.get(0).getName());
-		System.out.println(pList.get(0).getHp());
-		System.out.println(pList.get(0).getCompany());
 		
 		//스트림 닫기
 		sc.close();
 		fr.close();
 		br.close();
+		*/
 	}
 }
