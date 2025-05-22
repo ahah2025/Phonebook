@@ -16,7 +16,7 @@ public class MainApp {
 		List<Person> psList = new ArrayList<Person>();
 				
 		//Stream 준비
-		Reader fr = new FileReader("C:\\JavaStudy\\workspace\\Phonebook\\PhoneDB.txt");
+		Reader fr = new FileReader("../PhoneDB.txt");
 		BufferedReader br =new BufferedReader(fr);
 				
 		//반복
