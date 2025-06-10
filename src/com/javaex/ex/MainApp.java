@@ -1,3 +1,4 @@
+//--------
 package com.javaex.ex;
 
 import java.io.BufferedReader;
@@ -125,3 +126,163 @@ public class MainApp {
 	}
 }
 
+package com.project;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Reader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class TableSales {
+
+	private static String sa;
+	private static String s1;
+
+	public static void main(String[] args) throws IOException  {
+		
+		//리스트
+		List<Day> DList = new ArrayList<Day>();
+				
+		//Stream 준비
+		Reader fr = new FileReader("C:\\JavaStudy\\workspace\\MiniProject\\Category.txt");
+		BufferedReader br = new BufferedReader(fr);
+				
+		//반복
+		while(true) {
+			String str = br.readLine();
+			
+			if(str == null) {
+				break;
+			}
+			String[] sArr = str.split(",");
+			
+			try {
+				
+			} catch (Exception e) {
+				String da = sArr[0];
+				String sa = sArr[1];
+				String s1 = sArr[2];
+
+				Day d = new Day(da,sa,s1);
+				DList.add(d);
+			}
+			
+			
+		}
+		
+		///////////////////////////////////////////////////////////////
+		System.out.println("=======================================================");
+		System.out.println("1.테이블 확인  2.메뉴관리  3.카테고리관리  4.매출표확인");
+		System.out.println("=======================================================");
+		System.out.println("입력>");
+		
+		///////////////////////////////////////////////////////////////
+		
+		//스캐너 생성
+		Scanner sc = new Scanner(System.in); 
+		///////////////////////////////////////////////////////////////
+		//출력
+		//<1.카테고리별 매출표 확인>
+		while(true) {
+			
+			System.out.println("-------------------------------------------------------");
+			System.out.println("1.테이블 확인  2.메뉴관리  3.카테고리관리  4.매출표확인");
+			System.out.println("=======================================================");
+			System.out.println("입력>");
+			
+			String number =  sc.nextLine();
+			
+			if(number.equals("1")) {
+				System.out.println("<1.카테고리별 매출표 확인>");
+				
+				for(int i=0; i<DList.size(); i++) {
+					Day d = DList.get(i);
+					System.out.println((i+1) + ".   "+ d.getDa() + "  " + d.getSa() + "   " + d.getS());
+				}
+			}  else if(number.equals("2")) {				
+				//<2.날짜별 매출표 확인>
+				
+				System.out.println("<2.날짜별 매출표 확인>");
+				System.out.print("날짜");
+				String da = sc.nextLine();
+				System.out.print("매출");
+				String sa = sc.nextLine();
+				
+				Day newDay = new Day(da, sa, s1);
+				DList.add(newDay);
+				
+				System.out.println("=======================");
+				System.out.println("   <조회되었습니다>    ");
+			}else if (number.equals("5")) {
+				System.out.println("==================================");
+				System.out.println("          <조회되었습니다>        ");
+				break;
+			} else {
+				System.out.println("[다시 입력해 주세요]");
+				System.out.println();
+			}
+		}
+
+		//스트림 닫기
+		fr.close();
+		br.close();
+		sc.close();
+	}
+
+}
+
+package com.project;
+
+public class Day {
+
+	//필드
+	private String da; //일별 날짜
+	private String sa; //판매
+	private String s; //일별 매출
+	
+	//생성자
+	public Day() {	}
+	
+	public Day(String da, String sa, String s) {
+		this.da = da;
+		this.sa = sa;
+		this.s = s;
+	}
+	
+	//메소드gs
+	public String getDa() {
+		return da;
+	}
+
+	public void setDa(String da) {
+		this.da = da;
+	}
+
+	public String getSa() {
+		return sa;
+	}
+
+	public void setSa(String sa) {
+		this.sa = sa;
+	}
+
+	public String getS() {
+		return s;
+	}
+
+	public void setS(String s) {
+		this.s = s;
+	}
+	
+	//메소드 일반
+	@Override
+	public String toString() {
+		return "Day [days=" + da + ", sales=" + sa + ", summary=" + s + "]";
+	}
+
+	
+
+}
